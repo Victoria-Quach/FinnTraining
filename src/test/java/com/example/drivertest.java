@@ -10,7 +10,7 @@ public class drivertest {
     WebDriver driver;
     @Test
     public void test() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\isvendsen\\Documents\\Selenium\\Software\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\vquach\\projects\\FinnTraining\\libs\\chromedriver117.exe");
         driver = new ChromeDriver();
         driver.get("https://www.finn.no");
         Assert.assertEquals("FINN.no - mulighetenes marked", driver.getTitle());
