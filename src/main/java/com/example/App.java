@@ -1,13 +1,19 @@
 package com.example;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import tests.loggInnTest;
+import tests.reiseInfoTest;
+import tests.reiseResultatTest;
+
+
+public class App {
+
+    public static void main(String[] args) {
+
+        loggInnTest.setUp();
+        loggInnTest.performLogin();
+        //loggInnTest.tearDown();
+        reiseInfoTest.performReiseTest();
+        reiseResultatTest.performReiseResultatTest();
     }
+    
 }

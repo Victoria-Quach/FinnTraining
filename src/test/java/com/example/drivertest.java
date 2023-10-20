@@ -24,14 +24,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-
  
 public class drivertest {
     WebDriver driver;
     @Test
     public void test() {
 
-        // 0. Set path to and set up chromedriver
+        /*
+        String chromedriverPath = "C:\\Users\\vquach\\projects\\FinnTraining\\libs\\chromedriver117.exe";
+
+        // Call the open method from driverFactory
+        WebDriver driver = driverFactory.open(chromedriverPath);
+
+        // Using the driver funtcion
+        driver.get("https://www.finn.no/");
+         */
+        
+    
+        //0. Set path to and set up chromedriver
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\vquach\\projects\\FinnTraining\\libs\\chromedriver117.exe");
         
 
@@ -71,7 +81,7 @@ public class drivertest {
         // 8. Wait
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // 10 seconds timeout
         By yourElementLocator = By.id("username"); 
-        WebElement username = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
+        WebElement username = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
         WebElement password = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("password")));
 
 
@@ -87,7 +97,7 @@ public class drivertest {
         // 11. Click on Reise
         WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10)); // 10 seconds timeout
         By yourElementLocator2 = By.id("reise"); 
-        WebElement reiseElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Reise")));
+        WebElement reiseElement = wait2.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator2));
         reiseElement.click();
 
 
@@ -123,8 +133,8 @@ public class drivertest {
         // Press arrow next month
         driver.findElement(By.xpath("//button[@class='button button--pill button--small absolute right-10 top-4']")).click();
         // Choose dates for departure and return
-        driver.findElement(By.xpath("//td[@aria-label='onsdag 8. november 2023']")).click();
-        driver.findElement(By.xpath("//td[@aria-label='torsdag 16. november 2023']")).click();
+        driver.findElement(By.xpath("//td[@aria-label='lørdag 18. november 2023']")).click();
+        driver.findElement(By.xpath("//td[@aria-label='fredag 24. november 2023']")).click();
 
 
         // 15. Unclick on Hotell and click Search
