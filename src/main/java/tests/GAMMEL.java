@@ -1,3 +1,6 @@
+/* 
+
+
 package tests;
 
 import java.io.File;
@@ -38,7 +41,7 @@ public class GAMMEL {
 
         // Using the driver funtcion
         driver.get("https://www.finn.no/");
-         */
+         
         
     
         //0. Set path to and set up chromedriver
@@ -289,7 +292,7 @@ public class GAMMEL {
         }
 
 
-    }
+    
  
     
     @After
@@ -301,6 +304,4 @@ public class GAMMEL {
     }
 
 
-
-    
-}
+*/

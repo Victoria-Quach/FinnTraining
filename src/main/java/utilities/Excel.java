@@ -23,8 +23,8 @@ public class Excel {
 
         try{
 
-            // String ExcelPath = "C:\\Users\\isvendsen\\projects\\FinnTraining\\travelResults.xlsx";
-            // String sheetName = "results";
+            // String ExcelPath = "C:\\\\Users\\\\vquach\\\\projects\\\\FinnTraining\\\\travelResults.xlsx";
+            // String sheetName = "newresults";
 
             //File file = new File(ExcelPath);
 

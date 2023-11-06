@@ -1,6 +1,7 @@
 package pages;
 
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 import elements.elementsHjemPage;
@@ -8,48 +9,71 @@ import elements.elementsReisePage;
 
 public class reisePage {
 
-    public static void ClickReiseButton(WebDriver driver) {
-        elementsHjemPage.reiseButton(driver).click();
+    private elementsReisePage elementsReise;
+    private elementsHjemPage elementsHjem;
+    private WebDriver driver;
+
+    public reisePage(WebDriver driver) { 
+        this.driver = driver;
+        elementsReise = new elementsReisePage(driver); // passing the driver
+        elementsHjem = new elementsHjemPage(driver);  //passing the driver
+    }
+
+    public void ClickReiseButton() {
+        elementsHjem.reiseButton().click();
     }
 
     
-    public static void typeFlyFra(WebDriver driver) {
-        elementsReisePage.FlyFra(driver).sendKeys("Oslo lufthavn Gardermoen");
+    public void typeFlyFra() {
+        elementsReise.FlyFra().sendKeys("Oslo lufthavn Gardermoen");
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        elementsReise.FlyFra().sendKeys(Keys.RETURN);
     }
 
 
-    public static void typeFlyTil(WebDriver driver) {
-        elementsReisePage.FlyTil(driver).sendKeys("Barcelona");
+    public void typeFlyTil() {
+        elementsReise.FlyTil().sendKeys("Barcelona");
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        elementsReise.FlyTil().sendKeys(Keys.RETURN);
+    }
+
+    public void ClickDatoUtreiseFelt() {
+        elementsReise.datoUtreiseFelt().click();
     }
 
 
-    public static void ClickDatoUtreiseFelt(WebDriver driver) {
-        elementsReisePage.datoUtreiseFelt(driver).click();
+    public void ClickNesteMånedButton() {
+        elementsReise.NesteMånedButton().click();
     }
 
 
-    public static void ClickNesteMånedButton(WebDriver driver) {
-        elementsReisePage.NesteMånedButton(driver).click();
-    }
-
-
-    public static void ClickUtreiseDato(WebDriver driver) {
-        elementsReisePage.UtreiseDato(driver).click();
+    public void ClickUtreiseDato() {
+        elementsReise.UtreiseDato().click();
     }
     
 
-    public static void ClickHjemreiseDato(WebDriver driver) {
-        elementsReisePage.HjemreiseDato(driver).click();
+    public void ClickHjemreiseDato() {
+        elementsReise.HjemreiseDato().click();
     }
 
 
-    public static void ClickHotellButton(WebDriver driver) {
-        elementsReisePage.HotellButton(driver).click();
+    public void ClickHotellButton() {
+        elementsReise.HotellButton().click();
     }
 
 
-     public static void ClickSøkFlyButton(WebDriver driver) {
-        elementsReisePage.SøkFlyButton(driver).click();
+     public void ClickSøkFlyButton() {
+        elementsReise.SøkFlyButton().click();
     }
 
     

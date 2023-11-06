@@ -10,61 +10,60 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class elementsReisePage {
 
-    private static WebElement element = null;
-    WebDriver driver = null;
+    WebDriver driver;
 
     public elementsReisePage (WebDriver driver) {
         this.driver = driver;
     }
 
-    public static WebElement FlyFra(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public WebElement FlyFra() {
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
         By yourElementLocator = By.xpath("//*[@id=\"origin-roundtrip\"]");
-        element = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
         return element;
     }
 
 
-    public static WebElement FlyTil(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public WebElement FlyTil() {
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
         By yourElementLocator = By.xpath("//*[@id=\"destination-roundtrip\"]");
-        element = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
         return element;
     }
 
 
-    public static WebElement datoUtreiseFelt(WebDriver driver) {
-        element = driver.findElement(By.xpath("//*[@id=\"date-roundtrip-outbound\"]"));
+    public WebElement datoUtreiseFelt() {
+        WebElement element = this.driver.findElement(By.xpath("//*[@id=\"date-roundtrip-outbound\"]"));
         return element;
     }
 
 
-    public static WebElement NesteMånedButton(WebDriver driver) {
-        element = driver.findElement(By.xpath("//button[@class='button button--pill button--small absolute right-10 top-4']"));
+    public WebElement NesteMånedButton() {
+        WebElement element = this.driver.findElement(By.xpath("//button[@class='button button--pill button--small absolute right-10 top-4']"));
         return element;
     }
 
 
-    public static WebElement UtreiseDato(WebDriver driver) {
-        element = driver.findElement(By.xpath("//td[@aria-label='lørdag 18. november 2023']"));
+    public WebElement UtreiseDato() {
+        WebElement element = this.driver.findElement(By.xpath("//td[@aria-label='søndag 19. november 2023']"));
         return element;
     }
 
 
-    public static WebElement HjemreiseDato(WebDriver driver) {
-        element = driver.findElement(By.xpath("//td[@aria-label='fredag 24. november 2023']"));
+    public WebElement HjemreiseDato() {
+        WebElement element = this.driver.findElement(By.xpath("//td[@aria-label='fredag 24. november 2023']"));
         return element;
     }
 
    
-    public static WebElement HotellButton(WebDriver driver) {
-        element = driver.findElement(By.xpath("//label[@for='openHotelSearch']"));
+    public WebElement HotellButton() {
+        WebElement element = this.driver.findElement(By.xpath("//label[@for='openHotelSearch']"));
         return element;
     }
 
 
-    public static WebElement SøkFlyButton(WebDriver driver) {
-        element = driver.findElement(By.xpath("//button[@data-testid='flightSearchButton']"));
+    public WebElement SøkFlyButton() {
+        WebElement element = this.driver.findElement(By.xpath("//button[@data-testid='flightSearchButton']"));
         return element;
     }
 

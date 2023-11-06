@@ -15,52 +15,70 @@ import utilities.Excel;
 
 public class reiseResultatPage {
 
+    private elementsReiseResultatPage elements;
+    private WebDriver driver;
 
-    public static void waitForProgressBarElement(WebDriver driver){
 
+    public reiseResultatPage (WebDriver driver) {
+        this.driver = driver;
+        this.elements = new elementsReiseResultatPage(driver);
+    }
+
+
+    public void waitForProgressBarElement(){
         // Wait until progress bar disappears (aria-valuenow reaches 100 or element disappears)
-        WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(30));
-        By progressBarSelector = elementsReiseResultatPage.progressBarElement(driver);
-
+        WebDriverWait wait3 = new WebDriverWait(this.driver, Duration.ofSeconds(30));
+        By progressBarSelector = elements.progressBarElement();
         wait3.until(ExpectedConditions.or(ExpectedConditions.attributeToBe(progressBarSelector, "aria-valuenow", "100")
         ,ExpectedConditions.invisibilityOfElementLocated(progressBarSelector)));
     }
 
 
-    public static void ClickDirekte(WebDriver driver){
-        elementsReiseResultatPage.direkteButton(driver).click();
+    public void ClickDirekte(){
+        elements.direkteButton().click();
     }
 
 
-    public static void hentPriser(WebDriver driver, String ExcelPath, String sheetName){
+    public void ClickLavpriskalenderButton() {
+        elements.lavpriskalenderButton().click();
+    }
+
+
+    public void hentPriser(String ExcelPath, String sheetName){
+
+        System.out.println("før priser til excel");
         String data;
         for (int rowNumber=0; rowNumber<8; rowNumber++){
-            for (int columnNumber = 0; columnNumber<9; columnNumber++){
-                if ((columnNumber != 8) && (rowNumber != 0)){
-                    data = elementsReiseResultatPage.prisElement(driver, rowNumber, columnNumber).getText();
+            for (int columnNumber = 0; columnNumber<8; columnNumber++){
+                if ((columnNumber == 7) && (rowNumber == 0)){
+                    System.out.println("Blank field");
+                } else {
+                    data = elements.prisElement(rowNumber, columnNumber).getText();
                     Excel.writeData(ExcelPath, sheetName, rowNumber, columnNumber, data);
+                    // System.out.println("Value in row " + rowNumber + " and column: " + columnNumber);
                 }
             }
         }
+        System.out.println("hentet priser til excel");
     }
 
-    public static void endreAvreiseStart(WebDriver driver){
+    public void endreAvreiseStart(){
         String desiredTravelTimeStart = "08:00";
-        WebElement sliderTravelTimeStart = elementsReiseResultatPage.sliderAvreiseStart(driver);
+        WebElement sliderTravelTimeStart = elements.sliderAvreiseStart();
         String currentTimeStart = sliderTravelTimeStart.getAttribute("aria-valuetext").split(" ")[1];
         sliderTravelTimeStart.click();
-
         //Assert.assertEquals(desiredTravelTimeStart, currentTimeStart);
         while (!desiredTravelTimeStart.equals(currentTimeStart)){
             sliderTravelTimeStart.sendKeys(Keys.ARROW_RIGHT);
             currentTimeStart = sliderTravelTimeStart.getAttribute("aria-valuetext").split(" ")[1];
         }
+        System.out.println("endret avreise start");
     }
 
 
-    public static void endreAvreiseSlutt(WebDriver driver){
+    public void endreAvreiseSlutt(){
         String desiredTravelTimeSlutt = "12:00";
-        WebElement sliderTravelTimeSlutt = elementsReiseResultatPage.sliderAvreiseSlutt(driver);
+        WebElement sliderTravelTimeSlutt = elements.sliderAvreiseSlutt();
         String currentTimeSlutt = sliderTravelTimeSlutt.getAttribute("aria-valuetext").split(" ")[1];
         sliderTravelTimeSlutt.click();
         while (!desiredTravelTimeSlutt.equals(currentTimeSlutt)){
@@ -70,24 +88,21 @@ public class reiseResultatPage {
     }
 
 
-    public static void endreReisetid(WebDriver driver){
+    public void endreReisetid(){
         int desiredTravelTime = 8;
-        WebElement sliderTravelTime = elementsReiseResultatPage.sliderReisetid(driver);
+        WebElement sliderTravelTime = elements.sliderReisetid();
         String maxTravelTime = sliderTravelTime.getAttribute("aria-valuetext");
         int TravelTime = Integer.parseInt(maxTravelTime.split(" ")[0]);
         for (int i = 0; i < (TravelTime-desiredTravelTime) ; i++ ){
             sliderTravelTime.sendKeys(Keys.ARROW_LEFT);
         }
-
         // Check that we get the desired value
         String aria_valuetext = sliderTravelTime.getAttribute("aria-valuetext");
         Assert.assertEquals(desiredTravelTime, Integer.parseInt(aria_valuetext.split(" ")[0]));
     }
 
 
-    public static void ClickLavpriskalenderButton(WebDriver driver) {
-        elementsReiseResultatPage.lavpriskalenderButton(driver).click();
-    }
 
     
 }
+

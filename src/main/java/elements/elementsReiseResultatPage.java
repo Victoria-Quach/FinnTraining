@@ -9,59 +9,57 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class elementsReiseResultatPage {
-
-     private static WebElement element = null;
-    WebDriver driver = null;
+    WebDriver driver;
 
     public elementsReiseResultatPage (WebDriver driver) {
         this.driver = driver;
     }
 
 
-    public static By progressBarElement(WebDriver driver) {
-        return By.xpath("//label[@for='stopoverFilter0']");
+    public By progressBarElement() {
+        return By.xpath("//div[@role='progressbar']");
     }  
 
 
-    public static WebElement direkteButton(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        By yourElementLocator = By.xpath("//label[@for='stopoverFilter0']");
-        element = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
-        return element;
+    public WebElement direkteButton() {
+        return this.driver.findElement(By.xpath("//label[@for='stopoverFilter0']"));
     }
 
 
-     public static WebElement sliderTravelTimeStart(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    public WebElement lavpriskalenderButton() {
+        return this.driver.findElement(By.xpath("//button[@data-testid='toggleLowfare']"));
+    }
+
+
+    public WebElement sliderTravelTimeStart() {
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
         By yourElementLocator = By.xpath("//div[@aria-label='Utreise tidligst'][@role='slider']");
-        element = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(yourElementLocator));
         return element;
     }
 
 
-    public static WebElement prisElement(WebDriver driver, int rowNumber, int columnNumber){
-        return driver.findElement(By.xpath("//td[@data-row='"+rowNumber+"'][@data-col='"+columnNumber+"']"));
+    public WebElement prisElement(int rowNumber, int columnNumber){
+        return this.driver.findElement(By.xpath("//td[@data-row='"+rowNumber+"'][@data-col='"+columnNumber+"']"));
     }
 
 
-    public static WebElement sliderAvreiseStart(WebDriver driver){
-        return driver.findElement(By.xpath("//div[@aria-label='Utreise tidligst'][@role='slider']"));
+    public WebElement sliderAvreiseStart(){
+        return this.driver.findElement(By.xpath("//div[@aria-label='Utreise tidligst'][@role='slider']"));
     }
 
 
-    public static WebElement sliderAvreiseSlutt(WebDriver driver){
-        return driver.findElement(By.xpath("//div[@aria-label='Utreise senest'][@role='slider']"));
+    public WebElement sliderAvreiseSlutt(){
+        return this.driver.findElement(By.xpath("//div[@aria-label='Utreise senest'][@role='slider']"));
     }
 
 
-    public static WebElement sliderReisetid(WebDriver driver){
-        return driver.findElement(By.xpath("//div[@aria-label='Maks reisetid'][@role='slider']"));
+    public WebElement sliderReisetid(){
+        return this.driver.findElement(By.xpath("//div[@aria-label='Maks reisetid'][@role='slider']"));
     }
 
 
-    public static WebElement lavpriskalenderButton(WebDriver driver) {
-        return driver.findElement(By.cssSelector("button[data-testid='toggleLowfare']"));
-    } 
+  
 
 
 

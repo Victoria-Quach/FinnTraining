@@ -1,38 +1,58 @@
 package pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import elements.elementsHjemPage;
 
 
 public class hjemPage {
 
-    public static void clickJegForstårButton(WebDriver driver) {
-        driver.switchTo().frame(0);
-        elementsHjemPage.jegForstårButton(driver).click();
-        driver.switchTo().defaultContent();
+    private elementsHjemPage elements;
+    private WebDriver driver;
+
+    public hjemPage(WebDriver driver) {
+        this.driver = driver;
+        elements = new elementsHjemPage(driver);
+    }
+
+    public void clickJegForstårButton() {
+        this.driver.switchTo().frame(1);
+        elements.jegForstårButton().click();
+        this.driver.switchTo().defaultContent();
+
     }
     
 
-    public static void clickLoggInnButton(WebDriver driver) {
-        elementsHjemPage.LoggInnButton(driver).click();
-
+    public void clickLoggInnButton() {
+        elements.LoggInnButton().click();
     }
 
 
-    public static void clickReiseButton(WebDriver driver) {
-        driver.switchTo().defaultContent();
-        elementsHjemPage.reiseButton(driver).click();
+    public void clickReiseButton() {
+        //this.driver.switchTo().defaultContent();
+        elements.reiseButton().click();
     }
 
 
-    public static void clickeiendomButton(WebDriver driver) {
-        elementsHjemPage.eiendomButton(driver).click();
+    public void clickEiendomButton() {
+        elements.eiendomButton().click();
     }
 
 
 
-    
 }
+
+
+
+
+
+
+
+
+    
+

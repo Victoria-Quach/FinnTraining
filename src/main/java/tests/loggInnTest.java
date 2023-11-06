@@ -4,34 +4,34 @@ import org.openqa.selenium.WebDriver;
 
 
 import pages.hjemPage;
-import pages.loggInnPage;
 import utilities.driverFactory;
 
 public class loggInnTest {
+    private WebDriver driver;
+    private hjemPage hjem;
+    public void performLoggInn(){
 
-    private static WebDriver driver;
+    this.driver = driverFactory.open("incognito");
+    this.driver.get("https://www.finn.no/");
+    this.hjem = new hjemPage(driver);
+    this.hjem.clickJegForstårButton();
 
-    public static void setDriver(WebDriver driver) {
-        loggInnTest.driver = driver;
-    }
-    
+     
+        /* 
+        hjem.clickLoggInnButton();
 
-    public static void setUp() {
-        driver = driverFactory.getChromeDriver();
-        driver.get("https://www.finn.no/");
-    }
+        loggInnPage loggInn = new loggInnPage(driver);
+        loggInn.typeUsername();
+        loggInn.typePassword();
+        loggInn.clickLoggPåButton();
+        */
 
-    public static void performLogin() {
-        // Perform login actions using hjemPage methods
-        hjemPage.clickJegForstårButton(driver);
-        hjemPage.clickLoggInnButton(driver);
+        return;
         
-        loggInnPage.typeUsername(driver);
-        loggInnPage.typePassword(driver);
-        loggInnPage.clickLoggPåButton(driver);
     }
 
-    public static void tearDown() {
+
+    public static void tearDown(WebDriver driver) {
         // Close the browser after the test
         driver.quit();
     }

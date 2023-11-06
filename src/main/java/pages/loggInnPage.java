@@ -9,23 +9,28 @@ import elements.elementsLoggInnPage;
 
 public class loggInnPage {
 
-    public static void typeUsername(WebDriver driver) {
-        elementsLoggInnPage.username(driver).sendKeys("ingvild.svendsen@expleogroup.com");
+    private elementsLoggInnPage elements;
+    private WebDriver driver;
+
+    public loggInnPage(WebDriver driver) {
+        this.driver = driver;
+        elements = new elementsLoggInnPage(driver);
+    }
+
+    public void typeUsername() {
+        elements.username().sendKeys("ingvild.svendsen@expleogroup.com");
     }
     
-
-    public static void typePassword(WebDriver driver) {
-        elementsLoggInnPage.password(driver).sendKeys("Expleo123");
-
+    public void typePassword() {
+        elements.password().sendKeys("Expleo123");
     }
 
-
-    public static void clickLoggPåButton(WebDriver driver) {
-        elementsLoggInnPage.LoggPåButton(driver).click();
+    public void clickLoggPåButton() {
+        elements.LoggPåButton().click();
     }
 
-    
 }
+
 
 
     
